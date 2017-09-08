@@ -17,13 +17,13 @@ function solution(str) {
     for (var i = 1; i < hash.length; i++) {
         if (count > 1)
             return 'NO'
-        if ([a - 1, a, a + 1].indexOf(hash[i]) === -1) {
+        if ([a + 1, a].indexOf(hash[i]) === -1) {
             return 'NO';
-        } else if ([a - 1, a + 1].indexOf(hash[i]) > 0) {
+        } else if (hash[i] === (a - 1)) {
             count++;
         }
     }
     return 'YES';
 }
 
-console.log(universal('abbabccdcda'));
+console.log(solution('aabbccc'));
