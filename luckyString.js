@@ -1,23 +1,25 @@
 function solution(str) {
-    str = str.toLowerCase().split('').sort();
-    let count1 = 1,
-        count2 = 0,
-        count,
-        firstIndex = 0,
-        lastIndex = 0;
-    for (let i = 1; i < str.length; i++) {
-        if (a[i] === a[firstIndex]) {
-            continue;
-        } else {
-            lastIndex = i - 1;
-            count1 = lastIndex - firstIndex + 1;
-            if ((lastIndex - firstIndex + 1) === count1(lastIndex - firstIndex + 1) === count2)
-                firstIndex = i;
+    let hash = new Array(256).fill(0);
+    str.toLowerCase().split('').sort().forEach(function(value) {
+        hash[value.charCodeAt()]++;
+    });
+    hash = hash.filter(function(value) {
+        return value > 0;
+    });
+    let min = Math.min(...hash),
+        count = 0;
 
-            count2++;
+    for (var i = 0; i < hash.length; i++) {
+        if (count > 1)
+            return 'NO'
+        if ([min + 1, min].indexOf(hash[i]) === -1) {
+            return 'NO';
+        } else if (hash[i] === (min + 1)) {
+            count++;
         }
     }
-    return str;
+    return 'YES';
+
 }
 
 console.log(solution('abbabccdcda0fn1'));
